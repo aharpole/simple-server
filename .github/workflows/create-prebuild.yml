@@ -1,0 +1,23 @@
+name: Create codespaces prebuild
+on: workflow_dispatch
+
+jobs:
+  createPrebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - id: create-prebuild
+        run: |
+          curl -X "POST" "https://codespaces-prebuild-spike.review-lab.github.com/api/v3/vscs_internal/user/aharpole/codespaces/prebuild" \
+          -H 'User-Agent: 4123876e3aac9f3e6595bd82e216719a636563f7' \
+          -H 'Content-Type: application/json; charset=utf-8' \
+          -H 'Authorization: token $GITHUB_TOKEN' \
+          -d $'{ 
+          "ref": "master",
+          "repository_id": "354153749",
+          "location": "EastUs"
+          }'
+          
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
+      - run: "echo prebuld: ${{ steps.create-prebuild.outputs.data }}"
+  
