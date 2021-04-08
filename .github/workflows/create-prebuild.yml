@@ -12,7 +12,7 @@ jobs:
           -H 'Authorization: token ${{ secrets.MY_ACCESS_TOKEN }}' \
           -d $'{ 
           "ref": "master",
-          "repository_id": "354153749",
+          "repository_id": 354153749,
           "location": "WestUs2",
           "vscs_target": "development"
           }'
